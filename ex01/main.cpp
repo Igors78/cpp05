@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:00:22 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/23 14:26:36 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/24 07:28:03 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,60 +14,42 @@
 
 int main(void)
 {
-	Bureaucrat max("Max Senges", 1);
-	Bureaucrat jan("Jan Behrenbeck", 150);
-
-	std::cout << max;
-	std::cout << jan;
-
-	try
 	{
-		max.incrementGrade();
-	}
-	catch (Bureaucrat::GradeTooHighException &e)
-	{
-		std::cerr << e.what() << std::endl;
+		Form form("Enrollment certificate", 10, 10);
+		Bureaucrat max("Max Senges", 7);
+		std::cout << max;
+		std::cout << form;
+		max.signForm(form);
+		std::cout << form;
 	}
 
-	try
 	{
-		jan.decrementGrade();
-	}
-	catch (Bureaucrat::GradeTooLowException &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-
-	std::cout << max;
-	std::cout << jan;
-
-	try
-	{
-		max.decrementGrade();
-	}
-	catch (Bureaucrat::GradeTooLowException &e)
-	{
-		std::cerr << e.what() << std::endl;
+		Form form("Enrollment certificate", 100, 100);
+		Bureaucrat jan("Jan Behrenbeck", 142);
+		std::cout << jan;
+		std::cout << form;
+		jan.signForm(form);
 	}
 
-	try
 	{
-		jan.incrementGrade();
-	}
-	catch (Bureaucrat::GradeTooHighException &e)
-	{
-		std::cerr << e.what() << std::endl;
+		try
+		{
+			Form form("Form", 0, 0);
+		}
+		catch (std::exception &e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 	}
 
-	std::cout << max;
-	std::cout << jan;
-
-	try
 	{
-		Bureaucrat mist("Mistake", 0);
-	}
-	catch (Bureaucrat::GradeTooHighException &e)
-	{
-		std::cerr << e.what() << std::endl;
+		try
+		{
+			Form form("Form", 160, 160);
+		}
+		catch (std::exception &e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 	}
 }
